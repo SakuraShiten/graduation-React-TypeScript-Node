@@ -46,7 +46,7 @@ const Index: FC = () => {
                 <p>Забронировать сейчас</p>
             </StyledIndexFon>
             <StyledIndexInfo>
-
+                
             </StyledIndexInfo>
         </div>
     )
