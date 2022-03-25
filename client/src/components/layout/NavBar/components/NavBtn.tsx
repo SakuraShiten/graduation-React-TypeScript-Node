@@ -19,7 +19,6 @@ const StyledNavBtn = styled.p`
         content:"";
     }
     &:hover{
-        transform: scale(105%);
         &::before{
             width:100%;
         }
