@@ -1,10 +1,12 @@
 import styled from 'styled-components'
-import Index from './pages/index/Index';
+import IndexPage from './pages/index/IndexPage';
+import NewsPage from './pages/news/NewsPage';
 
 
 function App() {
   return (
-    <Index />
+    // <IndexPage />
+    <NewsPage />
   );
 }
 

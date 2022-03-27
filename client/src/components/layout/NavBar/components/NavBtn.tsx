@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import styled from 'styled-components';
 
+// изменить типа на кнопку
 const StyledNavBtn = styled.p`
     font-size: 16px;
     color: #000;
@@ -25,9 +26,13 @@ const StyledNavBtn = styled.p`
     }
 `
 
-const NavBtn: FC = ({ children }) => {
+interface NavBtnProps {
+    onClick: () => void;
+}
+
+const NavBtn: FC<NavBtnProps> = ({ children, onClick }) => {
     return (
-        <StyledNavBtn>{children}</StyledNavBtn>
+        <StyledNavBtn onClick={onClick}>{children}</StyledNavBtn>
     )
 }
 

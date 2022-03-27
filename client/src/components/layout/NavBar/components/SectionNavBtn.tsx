@@ -15,7 +15,8 @@ justify-content: space-around;
 const SectionBtn: FC = () => {
     return (
         <StyledSectionBtn>
-            {listURL.map(item => <NavBtn>{item.header}</NavBtn>)}
+            {listURL.map(item => <NavBtn onClick={() =>console.log("test")}key={item.header}>{item.header}</NavBtn>)} 
+            {/* поменять ключ */}
         </StyledSectionBtn>
     )
 }
