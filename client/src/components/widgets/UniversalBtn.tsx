@@ -8,6 +8,7 @@ const StyledUniversalBtn = styled.button`
     font-size: 16px;
     cursor: pointer;
     transition:0.3s;
+    margin-top: 10px;
     :hover{
         background-color: #000;
         color: #fff;
@@ -15,12 +16,13 @@ const StyledUniversalBtn = styled.button`
 `
 
 interface UniversalBtnProps {
-    onClick?: () => void;
+    onClick?: () => void,
+    type?: 'submit' | 'reset' | 'button',
 }
 
-const UniversalBtn: FC<UniversalBtnProps> = ({ children, onClick }) => {
+const UniversalBtn: FC<UniversalBtnProps> = ({ children, onClick, type }) => {
     return (
-        <StyledUniversalBtn onClick={onClick}>{children}</StyledUniversalBtn>
+        <StyledUniversalBtn type={type || "button"} onClick={onClick}>{children}</StyledUniversalBtn>
     )
 }
 

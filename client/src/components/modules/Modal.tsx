@@ -24,7 +24,7 @@ const StyledModal = styled.div<{ activeModal: boolean }>`
     animation: ${AnimShowModal} 0.3s linear;
     >div{
         animation: ${AnimShowModalContent} 0.3s linear;
-        width:50%;
+        padding: 20px 50px;
         padding-top: 3vh;
         padding-bottom: 3vh;
         background-color: #fff;
@@ -35,8 +35,8 @@ const StyledModal = styled.div<{ activeModal: boolean }>`
         position: relative;
         >span{
             position: absolute;
-            right: 10px;
-            top: 5px;
+            right: 5px;
+            top: 2px;
             cursor: pointer;
         }
     }

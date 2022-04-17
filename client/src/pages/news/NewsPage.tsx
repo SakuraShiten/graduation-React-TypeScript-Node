@@ -1,8 +1,9 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import NavBar from '../../components/layout/NavBar/NavBar'
 import styled from 'styled-components';
 import UniversalBtn from '../../components/widgets/UniversalBtn';
-import Modal from '../../components/modules/Modal';
+import { INews } from '../../types/types';
+import { fetchNewsGetAll } from '../../API/publicAPI';
 
 const StyledNewsPage = styled.div`
   display: flex;
@@ -13,7 +14,6 @@ const StyledNewsPage = styled.div`
     width:100%;
     text-align: center;
     background-color: #000000;
-   
   }
 `
 const StyledImage = styled.div`
@@ -38,7 +38,6 @@ position: relative;
   right:-4px;
 }
 >img{
-
   width: 100%;
   height:100%;
   object-fit: cover;
@@ -51,7 +50,6 @@ const StyledNewsPage_Content = styled.div`
   margin-top: 3vh;
   justify-content:space-between;
   height: 70vh;
-  
   >div{
     display: flex;
     flex-direction: column;
@@ -76,6 +74,29 @@ const StyledNewsPage_GroupBtn = styled.div`
 `
 
 const NewsPage: FC = () => {
+  const [allNews, setAllNews] = useState<INews[]>([])
+  const [selectNews, setSelectNews] = useState<number>(0)
+
+  const nextSelectNews = () => {
+    const count: number = selectNews + 1 > allNews.length - 1 ? 0 : selectNews + 1
+    setSelectNews(count)
+  }
+  const prevSelectNews = () => {
+    const count: number = selectNews - 1 < 0 ? allNews.length - 1 : selectNews - 1
+    setSelectNews(count)
+  }
+
+  const loadAllNews = async () => {
+    fetchNewsGetAll()
+      .then(data =>
+        setAllNews(data)
+      )
+  }
+
+  useEffect(() => {
+    loadAllNews()
+  }, [])
+
   return (
     <div>
       <NavBar />
@@ -84,17 +105,17 @@ const NewsPage: FC = () => {
         <StyledNewsPage_Content>
           <div>
             <StyledNewsPage_Header>
-              <h3>Заголовок</h3>
-              <p>Дата</p>
+              <h3>{allNews[selectNews]?.header}</h3>
+              <p>{new Date(allNews[selectNews]?.date).toLocaleDateString()}</p>
             </StyledNewsPage_Header>
-            <p>Текст Текст Текст ТекстТекстТекстТекст Текст Текст ТекстТекстТекстТекст Текст Текст ТекстТекстТекстТекст Текст Текст ТекстТекстТекстТекст Текст Текст ТекстТекстТекстТекст Текст Текст ТекстТекстТекст</p>
+            <p>{allNews[selectNews]?.body}</p>
             <StyledNewsPage_GroupBtn>
-              <UniversalBtn onClick={() => console.log("asdasd")}>Назад</UniversalBtn>
-              <UniversalBtn onClick={() => console.log("asdasd")}>Вперёд</UniversalBtn>
+              <UniversalBtn onClick={prevSelectNews}>Назад</UniversalBtn>
+              <UniversalBtn onClick={nextSelectNews}>Вперёд</UniversalBtn>
             </StyledNewsPage_GroupBtn>
           </div>
           <StyledImage>
-            <img src="https://sun9-83.userapi.com/impf/nDGZ5fR8nj4hS1RSbDZ5LB2d0IU-t2kqTJYuUA/jyiogyXR5kU.jpg?size=1080x1350&quality=96&sign=2f20de14e4911de50d302a428c98d4bc&type=album" alt="картинка" />
+            <img src={process.env.REACT_APP_API_URL + '/image/' + allNews[selectNews]?.img} alt="картинка" />
           </StyledImage>
         </StyledNewsPage_Content>
       </StyledNewsPage>
