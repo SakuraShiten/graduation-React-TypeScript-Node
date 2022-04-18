@@ -45,7 +45,8 @@ const FormNewBooking = () => {
 
     const formSubmit = (e: any) => {
         e.preventDefault()
-        fetchCreateBooking(formData.fio, formData.tel, formData.email, formData.service, formData.date, formData.time, formData.about)
+        fetchCreateBooking(formData.fio, formData.tel, formData.email,
+            formData.service, formData.date, formData.time, formData.about)
             .then(data => console.log(data))
     }
 

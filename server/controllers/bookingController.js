@@ -28,7 +28,7 @@ class bookingController {
         const { day } = req.body
         const booking = await Booking.find({ date: day })
         const busy = [...booking.map(e => JSON.parse(e.time)).flat()]
-        const space = [18, 19, 20, 21, 22, 23, 0, 1, 2, 3, 4, 5, 6].filter(el => !busy.includes(el))
+        const space = [18, 19, 20, 21, 22, 23, 0, 1, 2, 3, 4, 5].filter(el => !busy.includes(el))
         return res.json(space)
     }
 }

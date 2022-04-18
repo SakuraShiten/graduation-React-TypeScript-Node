@@ -1,7 +1,9 @@
 import React, { FC, useState } from 'react'
 import styled from 'styled-components';
+import { toast } from 'react-toastify';
 
-const StyledDayItem = styled.div<{ active: boolean }>`
+
+const StyledDayItem = styled.div<{ cardVariant: any }>`
   display: flex;
   flex-direction: column;
   border: 1.5px solid #000;
@@ -14,34 +16,43 @@ const StyledDayItem = styled.div<{ active: boolean }>`
   justify-content:center;
   transition:0.3s;
   margin: 0.3vh 0.3vh;
-  color:${props => !props.active ? "#000" : "#fff"};
-  background-color: ${props => !props.active ? "#fff" : "#2b96f1"};
+  color:${({ cardVariant }) => cardVariant == "select" ? "#000" :
+    cardVariant === "active" ? "#fff" : "#fff"};
+  background-color: ${({ cardVariant }) => cardVariant == "select" ? "#fff" :
+    cardVariant === "active" ? "#2b96f1" : "#000"};
   :hover{
-    border-color: ${props => !props.active ? "#2b96f1" : "#000"};
-    color:${props => !props.active ? "#2b96f1" : "#000"};
-  }
-  
+  color:${({ cardVariant }) => cardVariant == "select" ? "#2b96f1" :
+    cardVariant === "active" ? "#000" : "#fff"};
+  border-color: ${({ cardVariant }) => cardVariant == "select" ? "#2b96f1" :
+    cardVariant === "active" ? "#000" : "#000"};
+}
+
 `
+
+
+
 
 interface DayItemProps {
   header?: string,
   body?: string,
-  active?: boolean,
+  active?: "select" | "active" | "disabled",
   onClick?: () => void,
 }
 
-const DayItem: FC<DayItemProps> = ({ header, body, onClick = () => { }, active = false }) => {
+const DayItem: FC<DayItemProps> = ({ header, body, onClick = () => { }, active = "select" }) => {
 
   const handlerClick = (e: any) => {
     e.stopPropagation()
-    onClick()
+    if (active !== "disabled")
+      onClick()
+    else toast.warning("Выбирайте только ближайшие часы")
   }
 
   return (
-    <StyledDayItem active={active} onClick={handlerClick}>
+    <StyledDayItem cardVariant={active} onClick={handlerClick} >
       <h2>{header}</h2>
       <p>{body}</p>
-    </StyledDayItem>
+    </StyledDayItem >
   )
 }
 
