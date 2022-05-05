@@ -22,7 +22,7 @@ const ListTime: FC<ListTimeProps> = ({ formData, setFormData }) => {
     const [spaceTime, isLoadSpaceTime, loadSpaceTime] = useIsLoading(fetchGetSpacesTime)
 
     useEffect(() => {
-        if (formData.date) loadSpaceTime(formData.date)
+        if (formData.date) loadSpaceTime(formData.date,formData.service)
     }, [formData.date])
 
     const checkActiveCard = (item: number) => {
@@ -41,7 +41,9 @@ const ListTime: FC<ListTimeProps> = ({ formData, setFormData }) => {
 
     const changeTimeList = (time: number) => {
         if (formData.time.includes(time)) {
-            if (time !== formData.time[0] && time !== formData.time.pop())
+            if ((time !== formData.time[0] && time !== formData.time.pop()) ||
+                (time === 23 && (formData.time.includes(22) || formData.time.includes(0))) ||
+                (time === 0 && (formData.time.includes(23) || formData.time.includes(1))))
                 setFormData({
                     ...formData, time: []
                 })

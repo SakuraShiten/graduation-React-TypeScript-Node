@@ -1,4 +1,5 @@
 import { FC, useState } from 'react'
+import { toast } from 'react-toastify';
 import styled from 'styled-components';
 import { IBooking } from '../../../types/types';
 import { timeFormatter } from '../../../utils/utilsFunc';
@@ -39,6 +40,10 @@ const InputSelectDataTime: FC<InputSelectDataTimeProps> = ({ formData, setFormDa
     const [activeSelect, setActiveSelect] = useState<boolean>(false)
 
     const onActiveSelect = () => {
+        if (formData.service === '') {
+            toast.info("Сначала выберите услугу")
+            return
+        }
         setActiveSelect(true)
         setFormData({ ...formData, date: "", time: [] })
     }

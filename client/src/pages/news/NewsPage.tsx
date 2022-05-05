@@ -99,7 +99,6 @@ const NewsPage: FC = () => {
 
   return (
     <div>
-      <NavBar />
       <StyledNewsPage>
         <h2>Наши новости</h2>
         <StyledNewsPage_Content>

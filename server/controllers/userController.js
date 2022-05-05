@@ -29,6 +29,11 @@ class userController {
         const users = await User.find();
         return res.json(users)
     }
+    async get(req, res) {
+        const { login, password } = req.body
+        const user = await User.findOne({ login, password});
+        return res.json(user)
+    }
     async check(req, res) {
         const { login, password } = req.body
         const user = await User.find({ login: login, password: password });

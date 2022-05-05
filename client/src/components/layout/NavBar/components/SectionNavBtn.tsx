@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { listURL } from '../../../../utils/navigation'
 import NavBtn from './NavBtn';
@@ -13,10 +14,11 @@ justify-content: space-around;
 `
 
 const SectionBtn: FC = () => {
+    const navigate = useNavigate();
     return (
         <StyledSectionBtn>
-            {listURL.map(item => <NavBtn onClick={() =>console.log("test")}key={item.header}>{item.header}</NavBtn>)} 
-            {/* поменять ключ */}
+            {listURL.map(item => <NavBtn onClick={() =>navigate(item.URL)}key={item.URL}>{item.header}</NavBtn>)} 
+        
         </StyledSectionBtn>
     )
 }

@@ -56,7 +56,6 @@ const StyledIndexInfo = styled.div`
 const Index: FC = () => {
     return (
         <div>
-            <NavBar />
             <StyledIndexFon>
                 <h1>Боулинг клуб / Ресторан</h1>
                 <FonBtn />

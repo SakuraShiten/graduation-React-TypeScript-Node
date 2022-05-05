@@ -18,11 +18,12 @@ const StyledUniversalBtn = styled.button`
 interface UniversalBtnProps {
     onClick?: () => void,
     type?: 'submit' | 'reset' | 'button',
+    disabled?: boolean
 }
 
-const UniversalBtn: FC<UniversalBtnProps> = ({ children, onClick, type }) => {
+const UniversalBtn: FC<UniversalBtnProps> = ({ children, onClick, type,disabled=false }) => {
     return (
-        <StyledUniversalBtn type={type || "button"} onClick={onClick}>{children}</StyledUniversalBtn>
+        <StyledUniversalBtn disabled={disabled} type={type || "button"} onClick={onClick}>{children}</StyledUniversalBtn>
     )
 }
 

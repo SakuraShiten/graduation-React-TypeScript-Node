@@ -20,7 +20,6 @@ const BookingPage: FC = () => {
 
   return (
     <div>
-      <NavBar />
       <StyledBookingPage>
         <h1>Бронирование</h1>
         <FormNewBooking />

@@ -1,7 +1,8 @@
 import React, { FC, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { useAuthContext } from '../../../../context/AuthContext';
 import Modal from '../../../modules/Modal';
-import ModalAuth from './ModalAuth';
 import NavBtn from './NavBtn';
 
 const StyledSectionBtn = styled.div`
@@ -14,16 +15,14 @@ justify-content: space-around;
 `
 
 const SectionBtn: FC = () => {
-    const [activeModalAuth, setActiveModalAuth] = useState<boolean>(false)
-
+    const navigate = useNavigate();
+    const { isAuth } = useAuthContext()
     return (
         <div>
-            <ModalAuth
-                activeModalAuth={activeModalAuth}
-                setActiveModal={setActiveModalAuth}
-            />
             <StyledSectionBtn>
-                <NavBtn onClick={() => setActiveModalAuth(true)}>Авторизироваться</NavBtn>
+                <NavBtn onClick={() => navigate('moder')}>
+                    {isAuth ? "Панель модерации" : "Авторизироваться"}
+                    </NavBtn>
             </StyledSectionBtn>
         </div>
     )

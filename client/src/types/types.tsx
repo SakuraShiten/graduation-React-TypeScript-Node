@@ -1,6 +1,9 @@
+import React,{ FC } from "react"
+
 export interface IURL {
     header: string,
     URL: string,
+    component: React.ReactElement<FC>
 }
 export interface INews {
     _id: string,

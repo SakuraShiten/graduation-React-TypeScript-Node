@@ -2,15 +2,15 @@ import { useState } from "react"
 
 export const useIsLoading = (query: any) => {
     const [data, setData] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
 
-    const load = (...item: any) => {
+    const load = async (...item: any) => {
         setData([])
         setIsLoading(true)
-        query(...item).then((result: any) => {
-            setIsLoading(false)
-            setData(result)
-        })
+        const result:any = await query(...item)
+        setIsLoading(false)
+        setData(result)
+        return result
     }
 
     return [data, isLoading, load] as const
