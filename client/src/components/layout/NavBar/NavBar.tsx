@@ -6,7 +6,7 @@ import SectionAuthBtn from './components/SectionAuthBtn';
 import Modal from '../../modules/Modal';
 
 const StyledNavBar = styled.div`
-    width: 100vw;
+    width: 100%;
     height:10vh;
     background-color: #fff;
     align-items: center;

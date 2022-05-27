@@ -46,6 +46,7 @@ const Auth: FC<AuthProps> = () => {
             localStorage.setItem('login',data.login)
             localStorage.setItem('password',data.password)
             localStorage.setItem('fio',data.fio)
+            localStorage.setItem('role',data.role)
             setIsAuth(true)
         } else {
             toast.error("Неверные данные")

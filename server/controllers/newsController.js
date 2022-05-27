@@ -8,7 +8,7 @@ class newsController {
    async create(req, res) {
       const { header, body, login, password } = req.body
       const { img } = req.files
-      if (!header || !body || !login || !password || !img) return res.json({ message: "некорректные данные" })
+      if (!header || !body || !login || !password || !img) return res.json({ message: "Недостаточные данные" })
       const aut = await User.findOne({ login, password })
       if (!aut) return res.json({ message: "не авторизирован" })
       if (aut.role !== ("ADMIN" || "MODER")) return res.json({ message: "нет доступа" })
@@ -29,9 +29,9 @@ class newsController {
       await News.deleteOne({ _id: id })
       return res.json({ message: `новость с _id:${id} удалена` })
    }
-   async getAll(req,res){
+   async getAll(req, res) {
       const news = await News.find()
-      return res.json(news)
+      return res.json(news.reverse())
    }
 }
 

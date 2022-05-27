@@ -46,19 +46,29 @@ const StyledUniversalInput = styled.div`
 `
 
 interface UniversalInputProps {
-    onChange?: (event: React.ChangeEvent<HTMLInputElement & { rawValue: string }>) => void,
+    // onChange?: (event: React.ChangeEvent<HTMLInputElement & { rawValue: string }>) => void,
+    onChange?: (e: any) => void,
     options?: {},
     placeholder: string,
+    type?: any,
+    value?: string
 }
 
-const UniversalInput: FC<UniversalInputProps> = ({ onChange, options, placeholder}) => {
+const UniversalInput: FC<UniversalInputProps> = ({ value, onChange, options = null, placeholder, type = "text" }) => {
     return (
         <StyledUniversalInput>
-            <Cleave
-                options={options || {}}
-                onChange={onChange}
-            />
-            <label>{placeholder}</label>
+            {options
+                ? <Cleave
+                    options={options || {}}
+                    onChange={onChange}
+                    type={type}
+                />
+                : <input
+                    onChange={onChange}
+                    type={type}
+                    value={value}
+                />}
+            <label>{type !== "file" && placeholder}</label>
         </StyledUniversalInput>
     )
 }

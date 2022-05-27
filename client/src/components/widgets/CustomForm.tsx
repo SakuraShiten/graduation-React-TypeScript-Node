@@ -7,10 +7,11 @@ const StyledCustomForm = styled.form`
     display:flex;
     flex-direction:column;
     justify-content:center;
+
 `
 
 interface CustomFormProps {
-    obj: { name: string, type: "text" | "number", placeholder: string }[],
+    obj: { name: string, type: "text" | "number" , placeholder: string }[],
     state: any,
     textBtn: string,
     setState: (item: any) => void,
@@ -34,9 +35,11 @@ const CustomForm: FC<CustomFormProps> = ({ obj, state, setState, onSubmit, textB
         <StyledCustomForm onSubmit={onSubmit}>
             {obj.map(item =>
                 <UniversalInput
+                    options={{}}
                     key={item.name}
                     placeholder={item.placeholder}
                     onChange={(e) => changeValue(item.name, e)}
+                    type={item.type}
                 />)}
             <UniversalBtn disabled={activeBtn} type="submit">{textBtn}</UniversalBtn>
         </StyledCustomForm>

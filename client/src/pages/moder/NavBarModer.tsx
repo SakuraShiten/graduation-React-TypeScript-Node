@@ -54,6 +54,7 @@ const NavBarModer: FC<NavBarModerProps> = ({ arrayNavBarBtn, selectPanel, setSel
         localStorage.removeItem('login')
         localStorage.removeItem('password')
         localStorage.removeItem('fio')
+        localStorage.removeItem('role')
         setIsAuth(false)
     }
 

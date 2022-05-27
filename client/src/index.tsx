@@ -10,6 +10,10 @@ const Global = createGlobalStyle`
     box-sizing: border-box;
     font-family: consolas;
 }
+body {
+  min-height: 101vh;
+  overflow-x: hidden;
+}
 `
 
 const theme = {

@@ -18,6 +18,8 @@ const StyledBookingPage = styled.div`
 
 const BookingPage: FC = () => {
 
+
+
   return (
     <div>
       <StyledBookingPage>

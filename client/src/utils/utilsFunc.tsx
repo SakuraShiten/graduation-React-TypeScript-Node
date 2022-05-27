@@ -9,10 +9,12 @@ export const createDayList = (count: number = 6) => {
             dayNumber: dayCount.split(',')[1].trim()
         })
     }
-    return dateArray
+    const result = dateArray.filter(item=>item.dayName !== ('пн' || "вт" || "ср"))
+    return result
 }
 
-export const timeFormatter = (array: number[]) => {
+export const timeFormatter = (array: number[] | string[]) => {
+    array = array.map(item=>Number(item))
     let result = ""
     if (array.length === 1) {
         let start = array[0]

@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 
 
 const StyledDayItem = styled.div<{ cardVariant: any }>`
+  box-shadow: 2px;
   display: flex;
   flex-direction: column;
   border: 1.5px solid #000;

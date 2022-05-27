@@ -24,7 +24,7 @@ const ListDay: FC<ListDayProps> = ({ formData, setFormData }) => {
     }
 
     useEffect(() => {
-        setDayList(createDayList())
+        setDayList(createDayList(8))
     }, [])
 
     return (

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useAuthContext } from '../../context/AuthContext'
 import Auth from './Auth'
 import { ToastContainer, toast } from 'react-toastify';
-import ModerPanel from './ModerPanel';
+import ModerPanel from './ModerPanel/ModerPanel';
 
 const StyledModerPage = styled.div`
     display: flex;

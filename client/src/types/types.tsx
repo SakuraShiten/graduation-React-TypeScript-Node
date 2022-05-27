@@ -1,4 +1,4 @@
-import React,{ FC } from "react"
+import React, { FC } from "react"
 
 export interface IURL {
     header: string,
@@ -21,4 +21,22 @@ export interface IBooking {
     date: string,
     time: number[],
     about: string,
+}
+export interface IBookingAndClient {
+    about: string,
+    date: string,
+    ownerClient: {
+        fio: string,
+        mail: string,
+        tel: string,
+        _id: string,
+    },
+    ownerUser?: {
+        _id: string,
+        fio: string,
+    }
+    service: string,
+    status: string,
+    time: string,
+    _id: string,
 }

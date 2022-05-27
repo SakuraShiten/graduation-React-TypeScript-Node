@@ -9,7 +9,7 @@ class clientController {
     }
     async getAll(req, res) {
         const clients = await Client.find()
-        return res.json(clients)
+        return res.json(clients.reverse())
     }
 }
 

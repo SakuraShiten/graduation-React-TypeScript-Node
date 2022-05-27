@@ -5,7 +5,7 @@ const schema = new Schema({
     date: { type: Date, default: Date.now, required: true },
     body: { type: String, required: true },
     img: { type: String, required: true },
-    owner: { type: Types.ObjectId, required: true }
+    owner: { type: Types.ObjectId, required: true, ref: 'User' },
 }, { versionKey: false })
 
 module.exports = model('News', schema)

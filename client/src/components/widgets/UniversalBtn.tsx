@@ -21,9 +21,14 @@ interface UniversalBtnProps {
     disabled?: boolean
 }
 
-const UniversalBtn: FC<UniversalBtnProps> = ({ children, onClick, type,disabled=false }) => {
+const UniversalBtn: FC<UniversalBtnProps> = ({ children, onClick, type, disabled = false }) => {
     return (
-        <StyledUniversalBtn disabled={disabled} type={type || "button"} onClick={onClick}>{children}</StyledUniversalBtn>
+        <StyledUniversalBtn
+            disabled={disabled}
+            type={type || "button"}
+            onClick={onClick}>
+            {children}
+        </StyledUniversalBtn>
     )
 }
 

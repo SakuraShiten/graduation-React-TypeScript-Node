@@ -16,8 +16,8 @@ class noticeController {
         return res.json({ message: `Уведомления на почту ${notice.mail} убраны` })
     }
     async getAll(req, res) {
-        const notice = await Notice.find()
-        return res.json(notice)
+        const notice = await Notice.find().populate("owner")
+        return res.json(notice.reverse())
     }
 }
 

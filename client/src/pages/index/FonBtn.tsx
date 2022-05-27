@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import { useNavigate } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 
 const AnimationBtnFon = keyframes`
@@ -45,8 +46,9 @@ const StyledFonBtn = styled.p`
 `
 
 const FonBtn: FC = () => {
+    const navigate = useNavigate()
     return (
-      <StyledFonBtn>Забронировать сейчас</StyledFonBtn>
+        <StyledFonBtn onClick={() => navigate("booking")}>Забронировать сейчас</StyledFonBtn>
     )
 }
 

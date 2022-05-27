@@ -37,12 +37,25 @@ position: relative;
   bottom:-4px;
   right:-4px;
 }
->img{
+
+>div{
+  overflow: hidden;
+  display: flex;
+justify-content: center;
+align-items: center;
+position: relative;
+width: 100%;
+height: 100%;
+  >img{
+  
+  position: absolute;
   width: 100%;
   height:100%;
   object-fit: cover;
-  object-position: center;
+  object-position: top;
+  }
 }
+
 `
 const StyledNewsPage_Content = styled.div`
   display: flex;
@@ -54,11 +67,14 @@ const StyledNewsPage_Content = styled.div`
     display: flex;
     flex-direction: column;
     width: 45%;
-    height: 75vh;
-    >p{
-      margin-top: 2vh;
+    height:100%;
+    >span{
       height:100%;
-      
+      >p{
+      margin-top: 0.4vh;
+      white-space: pre-wrap;
+
+    }
     }
   }
 `
@@ -107,14 +123,19 @@ const NewsPage: FC = () => {
               <h3>{allNews[selectNews]?.header}</h3>
               <p>{new Date(allNews[selectNews]?.date).toLocaleDateString()}</p>
             </StyledNewsPage_Header>
-            <p>{allNews[selectNews]?.body}</p>
+            <span>
+              {allNews[selectNews]?.body.split('$').map((item) => <p>{item}</p>)}
+              {/* <p>{allNews[selectNews]?.body}</p> */}
+            </span>
             <StyledNewsPage_GroupBtn>
               <UniversalBtn onClick={prevSelectNews}>Назад</UniversalBtn>
               <UniversalBtn onClick={nextSelectNews}>Вперёд</UniversalBtn>
             </StyledNewsPage_GroupBtn>
           </div>
           <StyledImage>
-            <img src={process.env.REACT_APP_API_URL + '/image/' + allNews[selectNews]?.img} alt="картинка" />
+            <div>
+              <img src={process.env.REACT_APP_API_URL + '/image/' + allNews[selectNews]?.img} alt="картинка" />
+            </div>
           </StyledImage>
         </StyledNewsPage_Content>
       </StyledNewsPage>
@@ -123,3 +144,4 @@ const NewsPage: FC = () => {
 }
 
 export default NewsPage
+
