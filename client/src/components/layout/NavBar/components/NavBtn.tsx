@@ -9,6 +9,7 @@ const StyledNavBtn = styled.p`
     margin-right: 30px;
     position: relative;
     transition: 0.3s;
+    user-select: none;
     &::before{
         position:absolute;
         bottom:0;
@@ -23,6 +24,18 @@ const StyledNavBtn = styled.p`
         &::before{
             width:100%;
         }
+    }
+    @media only screen and (max-width: 768px){
+        &:active{
+            &::before{
+                width:100%;
+            }
+        }
+        &:hover{
+        &::before{
+            width:0%;
+        }
+    }   
     }
 `
 

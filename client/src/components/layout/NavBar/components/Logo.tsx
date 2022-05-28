@@ -13,6 +13,9 @@ left:50%;
 transform: translate(-50%, -50%);
 align-items: center;
 justify-content: center;
+@media only screen and (max-width: 768px){
+    
+}
 `
 
 const Logo: FC = () => {

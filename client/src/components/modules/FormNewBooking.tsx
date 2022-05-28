@@ -7,16 +7,31 @@ import InputSelectDataTime from './InputSelectDataTime/InputSelectDataTime';
 import { ToastContainer, toast } from 'react-toastify';
 import { fetchCreateBooking } from '../../API/publicAPI';
 import { IBooking } from '../../types/types';
-import { timeFormatter } from '../../utils/utilsFunc';
+import { phoneMask, timeFormatter } from '../../utils/utilsFunc';
 const StyledForm = styled.form`
     margin-top:2vh;
     width: 30vw;
     display: flex;
     flex-direction: column;
-  
+@media only screen and (max-width: 768px){
+    width: 100vw;
+    align-items: center;
+   
+    >div{
+        width: 80%;
+    }
+    >select{
+        width: 80%;
+    }
+}
 `
 const Label = styled.h2`
     margin-top: 4vh;
+    @media only screen and (max-width: 768px){
+        font-size: 10vw;
+        width: 100%;
+        text-align:center;
+    }
 `
 
 
@@ -33,14 +48,15 @@ const FormNewBooking = () => {
         about: '',
     })
 
-    const setValueFormFio = (e: React.ChangeEvent<{ rawValue: string }>) => {
-        setFormData({ ...formData, fio: e.target.rawValue })
+    const setValueFormFio = (e: any) => {
+        setFormData({ ...formData, fio: e.target.value })
     }
-    const setValueFormTel = (e: React.ChangeEvent<{ rawValue: string }>) => {
-        setFormData({ ...formData, tel: e.target.rawValue })
+    const setValueFormTel = (e: any) => {
+        const mask = phoneMask(e.target.value)
+        setFormData({ ...formData, tel: mask })
     }
-    const setValueFormEmail = (e: React.ChangeEvent<{ rawValue: string }>) => {
-        setFormData({ ...formData, email: e.target.rawValue })
+    const setValueFormEmail = (e: any) => {
+        setFormData({ ...formData, email: e.target.value })
     }
     const setValueFormService = (e: any) => {
         setFormData({ ...formData, service: e.target.value })
@@ -51,6 +67,14 @@ const FormNewBooking = () => {
 
     const formSubmit = (e: any) => {
         e.preventDefault()
+        if(formData.tel.length<16) {
+            toast.error("Заполните номер полностью")
+            return
+        }
+        if(formData.time.length<1) {
+            toast.error("Выберите время бронирования")
+            return
+        }
         fetchCreateBooking(formData.fio, formData.tel, formData.email,
             formData.service, formData.date, formData.time, formData.about)
             .then(data => setLoad(true))
@@ -63,23 +87,22 @@ const FormNewBooking = () => {
                     <UniversalInput
                         onChange={setValueFormFio}
                         placeholder="Имя"
-                        options={{}}
+                        value={formData.fio}
+                        required={true}
                     />
                     <UniversalInput
                         onChange={setValueFormTel}
                         placeholder="Телефон"
-                        options={{
-                            prefix: '+7',
-                            blocks: [2, 3, 3, 2, 2],
-                            delimiters: ['(', ')', '-', '-'],
-                            numericOnly: true,
-                            noImmediatePrefix: true
-                        }}
+                        type="tel"
+                        value={formData.tel}
+                        required={true}
                     />
                     <UniversalInput
                         onChange={setValueFormEmail}
-                        options={{}}
+                        type="email"
                         placeholder="Электронная почта"
+                        required={true}
+                        value={formData.email}
                     />
                     <UniversalSelected
                         onChange={setValueFormService}
@@ -90,8 +113,8 @@ const FormNewBooking = () => {
                     />
                     <UniversalInput
                         onChange={setValueFormAbout}
-                        options={{}}
                         placeholder="Описание (не обязательно)"
+                        value={formData.about}
                     />
                     <UniversalBtn type="submit">Отправить</UniversalBtn>
                     <ToastContainer />

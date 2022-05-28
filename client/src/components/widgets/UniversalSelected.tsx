@@ -12,6 +12,7 @@ const StyledUniversalSelect = styled.select`
     position: relative;
     transition: 0.2s;
     padding: 5px 10px;
+    background-color: #fff;
     :focus{
         outline: none;
         border: 2px solid #2b96f1;

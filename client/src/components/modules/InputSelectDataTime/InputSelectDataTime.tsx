@@ -29,6 +29,20 @@ const StyledInput = styled.div<{ activeSelect: boolean }>`
     height: ${props => !props.activeSelect ? "6vh" : "20vh"};
     width: ${props => !props.activeSelect ? "30vw" : "60vw"};
     transform: translateX(${props => !props.activeSelect ? "0%" : "-15vw"});
+    @media only screen and (max-width: 768px){
+        margin-top: ${props =>!props.activeSelect ?"1vh": "5vh"};
+        transform: translateX(0%);
+        width: ${props => !props.activeSelect ? "30vw" : "95% !important"};
+        >div{
+            
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content:center;
+            >div{
+                width:30%;
+            }
+        }
+    }
 `
 
 interface InputSelectDataTimeProps {

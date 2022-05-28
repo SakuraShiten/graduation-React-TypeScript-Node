@@ -11,6 +11,10 @@ const StyledNavBar = styled.div`
     background-color: #fff;
     align-items: center;
     position: relative;
+    
+    @media only screen and (max-width: 768px){
+        height: 6vh;        
+    }
 `
 
 

@@ -35,7 +35,6 @@ const CustomForm: FC<CustomFormProps> = ({ obj, state, setState, onSubmit, textB
         <StyledCustomForm onSubmit={onSubmit}>
             {obj.map(item =>
                 <UniversalInput
-                    options={{}}
                     key={item.name}
                     placeholder={item.placeholder}
                     onChange={(e) => changeValue(item.name, e)}

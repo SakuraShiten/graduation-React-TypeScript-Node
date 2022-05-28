@@ -12,6 +12,9 @@ top: 50%;
 transform: translateY(-50%);
 right: 0px;
 justify-content: space-around;
+@media only screen and (max-width: 768px){
+    display: none;
+}
 `
 
 const SectionBtn: FC = () => {
@@ -22,7 +25,7 @@ const SectionBtn: FC = () => {
             <StyledSectionBtn>
                 <NavBtn onClick={() => navigate('moder')}>
                     {isAuth ? "Панель модерации" : "Авторизироваться"}
-                    </NavBtn>
+                </NavBtn>
             </StyledSectionBtn>
         </div>
     )

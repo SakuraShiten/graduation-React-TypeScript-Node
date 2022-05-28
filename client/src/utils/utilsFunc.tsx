@@ -9,12 +9,12 @@ export const createDayList = (count: number = 6) => {
             dayNumber: dayCount.split(',')[1].trim()
         })
     }
-    const result = dateArray.filter(item=>item.dayName !== ('пн' || "вт" || "ср"))
+    const result = dateArray.filter(item => item.dayName !== ('пн' || "вт" || "ср"))
     return result
 }
 
 export const timeFormatter = (array: number[] | string[]) => {
-    array = array.map(item=>Number(item))
+    array = array.map(item => Number(item))
     let result = ""
     if (array.length === 1) {
         let start = array[0]
@@ -33,4 +33,17 @@ export const timeFormatter = (array: number[] | string[]) => {
         result += `${start[0]}:00-${Number(start.pop()) + 1}:00`
     }
     return result as string
+}
+
+export const phoneMask = (tel: string) => {
+    let match: any = tel.replace(/\+7|\(|\)|\-/g, '')
+        .match(/(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
+    console.log(match)
+    let mask = ""
+    if (match && match[1]) mask += `+7(${match[1]}`
+    if (match && match[2]) mask += `)${match[2]}`
+    if (match && match[3]) mask += `-${match[3]}`
+    if (match && match[4]) mask += `-${match[4]}`
+    // console.log(mask)
+    return mask
 }

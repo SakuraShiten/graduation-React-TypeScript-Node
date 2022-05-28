@@ -22,6 +22,9 @@ const StyledAnimLine = styled.div`
     animation: ${AnimationLine} 15s linear infinite;
     background-color: #000;
     height: 0.5vh;
+    @media only screen and (max-width: 768px){
+     animation:none;
+    }
 `
 
 const AnimLine: FC = () => {

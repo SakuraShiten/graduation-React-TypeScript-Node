@@ -25,6 +25,16 @@ const StyledIndexFon = styled.div`
         1px 0px 10px black,
         -1px 0px 10px black; */
     }
+    @media only screen and (max-width: 768px){
+        background-size: cover;
+        margin-top: 5vh;
+        
+        background-position: left;
+
+        >h1{
+            font-size:7vw;
+        }
+    }
 `
 
 const StyledIndexInfo = styled.div`
@@ -50,6 +60,11 @@ const StyledIndexInfo = styled.div`
             margin-top: 3vh;
             font-size: 22px;
         }
+    }
+    @media only screen and (max-width: 768px){
+        flex-direction: column;
+        margin-bottom: 2vh;
+        height: auto;
     }
 `
 

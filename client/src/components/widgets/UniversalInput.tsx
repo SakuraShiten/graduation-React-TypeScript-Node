@@ -1,6 +1,6 @@
 import React, { FC, useCallback } from 'react'
 import styled from 'styled-components';
-import Cleave from 'cleave.js/react';
+import IMask from 'imask';
 
 const StyledUniversalInput = styled.div`
     margin-top:10px;
@@ -46,28 +46,23 @@ const StyledUniversalInput = styled.div`
 `
 
 interface UniversalInputProps {
-    // onChange?: (event: React.ChangeEvent<HTMLInputElement & { rawValue: string }>) => void,
     onChange?: (e: any) => void,
-    options?: {},
     placeholder: string,
     type?: any,
     value?: string
+    required?:boolean
 }
 
-const UniversalInput: FC<UniversalInputProps> = ({ value, onChange, options = null, placeholder, type = "text" }) => {
+const UniversalInput: FC<UniversalInputProps> = ({required =false, value, onChange, placeholder, type = "text" }) => {
+   
     return (
         <StyledUniversalInput>
-            {options
-                ? <Cleave
-                    options={options || {}}
-                    onChange={onChange}
-                    type={type}
-                />
-                : <input
-                    onChange={onChange}
-                    type={type}
-                    value={value}
-                />}
+            <input id="asd"
+                onChange={onChange}
+                type={type}
+                value={value}
+                required={required}
+            />
             <label>{type !== "file" && placeholder}</label>
         </StyledUniversalInput>
     )

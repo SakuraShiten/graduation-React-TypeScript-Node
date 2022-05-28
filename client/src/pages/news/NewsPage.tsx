@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import UniversalBtn from '../../components/widgets/UniversalBtn';
 import { INews } from '../../types/types';
 import { fetchNewsGetAll } from '../../API/publicAPI';
+import LoadingGif from './loading.gif'
 
 const StyledNewsPage = styled.div`
   display: flex;
@@ -15,6 +16,13 @@ const StyledNewsPage = styled.div`
     text-align: center;
     background-color: #000000;
   }
+  @media only screen and (max-width: 768px){
+       margin-top:6vh; 
+       >div{
+         display: flex;
+         flex-direction: column-reverse;
+       }
+      }
 `
 const StyledImage = styled.div`
 display: flex;
@@ -55,7 +63,13 @@ height: 100%;
   object-position: top;
   }
 }
-
+  flex-direction: column;
+@media only screen and (max-width: 768px){
+  >div{
+    height: 40vh;
+    
+}    
+}
 `
 const StyledNewsPage_Content = styled.div`
   display: flex;
@@ -77,6 +91,15 @@ const StyledNewsPage_Content = styled.div`
     }
     }
   }
+  @media only screen and (max-width: 768px){
+    flex-direction: column;
+    height:auto;
+    >div{
+    margin-top:4vh;
+      width:100%;
+      margin-bottom: 4vh;
+    }      
+  }
 `
 const StyledNewsPage_Header = styled.div`
   display: flex;
@@ -87,6 +110,10 @@ const StyledNewsPage_GroupBtn = styled.div`
   width:40%;
   justify-content: space-between;
   align-self: flex-end;
+  @media only screen and (max-width: 768px){
+   width:60%;
+   align-self: center;
+  }
 `
 
 const NewsPage: FC = () => {
@@ -120,8 +147,10 @@ const NewsPage: FC = () => {
         <StyledNewsPage_Content>
           <div>
             <StyledNewsPage_Header>
-              <h3>{allNews[selectNews]?.header}</h3>
-              <p>{new Date(allNews[selectNews]?.date).toLocaleDateString()}</p>
+              <h3>{allNews
+                ? allNews[selectNews]?.header
+                : "Загрузка"}</h3>
+              <p>{allNews[selectNews] && new Date(allNews[selectNews]?.date).toLocaleDateString()}</p>
             </StyledNewsPage_Header>
             <span>
               {allNews[selectNews]?.body.split('$').map((item) => <p>{item}</p>)}
@@ -134,7 +163,10 @@ const NewsPage: FC = () => {
           </div>
           <StyledImage>
             <div>
-              <img src={process.env.REACT_APP_API_URL + '/image/' + allNews[selectNews]?.img} alt="картинка" />
+              <img src={allNews[selectNews]
+                ? process.env.REACT_APP_API_URL + '/image/' + allNews[selectNews]?.img
+                : LoadingGif
+              } alt="картинка" />
             </div>
           </StyledImage>
         </StyledNewsPage_Content>
